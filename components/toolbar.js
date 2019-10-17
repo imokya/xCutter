@@ -1,7 +1,11 @@
 const $ = require('jquery')
 const el = $('.toolbar')
 
-const cutterTool = require('../tools/cutter')
+const cutTool = require('../tools/cutter')
+
+const tools = {
+  "cut": cutTool
+}
 
 const toolbar = {
   init() {
@@ -12,10 +16,18 @@ const toolbar = {
       el.find('li').removeClass('active')
       const target = $(e.currentTarget)
       target.addClass('active')
+      const tool = target.data('tool')
+      for (let key in tools) {
+        if (key === tool) {
+          tools[key].setActive(true)
+        } else {
+          tools[key].setActive(false)
+        }
+      }
     })
   },
   resize() {
-    cutterTool.resize()
+    cutTool.resize()
   }
 }
 

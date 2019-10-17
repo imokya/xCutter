@@ -7,6 +7,7 @@ const canvasWrap = $('#canvas-wrap')
 let cutter, cutters = []
 let canvasTop, canvasBottom, canvasLeft
 let canvasEl
+let active = false
 
 const cutterTool = {
   init() {
@@ -20,11 +21,12 @@ const cutterTool = {
     this.setPos(cutter, canvasTop - 2)
   },
   bindEvent() {
-    let active = false
+    let canTouch = false
     $(document).on('mousedown', (e) => {
+      if (!active) return
       if (e.clientY > 0 && e.clientY <= 18) {
         cutter = this.createCutter()
-        active = true
+        canTouch = true
       } else {
         const el = $(e.target)
         const isCutter = el.hasClass('cutter')
@@ -32,18 +34,18 @@ const cutterTool = {
           cutter = el.data('cutter')
           if (cutter.movable) {
             cutter.labelEl.addClass('hide')
-            active = true
+            canTouch = true
           }
         }
       }
     })
     $(document).on('mousemove', (e) => {
-      if (active) {
+      if (canTouch) {
         this.setTranslate(cutter, e.pageY)
       }
     })
     $(document).on('mouseup', (e) => {
-      if (active) {
+      if (canTouch) {
         if (e.clientY <= canvasTop || e.pageY >= canvasBottom) {
           this.removeCutter()
         } else {
@@ -51,7 +53,7 @@ const cutterTool = {
           cutter.labelEl.removeClass('hide')
         }
         this.sortCutters()
-        active = false
+        canTouch = false
       }
     })
     $(window).on('load', () => {
@@ -80,6 +82,14 @@ const cutterTool = {
     cutter.pos = pos.toFixed(2)
     this.setTranslate(cutter, y)
   },
+  setActive(_active) {
+    active = _active
+    if (active) {
+      wraperEl.removeClass('hide')
+    } else {
+      wraperEl.addClass('hide')
+    }
+  },
   setTranslate(cutter, y) {
     cutter.el.css({
       transform: `translateY(${y}px)`
@@ -88,13 +98,12 @@ const cutterTool = {
   resize() {
     const cw = canvasEl.width()
     const ch = canvasEl.height()
-    const ww = window.innerWidth
+    const ww = document.body.clientWidth
     const w = Math.max(ww, cw)
     wraperEl.width(w)
-
     canvasBottom = canvasEl.height() + canvasTop
     canvasLeft = canvasEl.offset().left + 1
-
+   
     for (let i = 0; i < cutters.length; i++) {
       const cutter = cutters[i]
       const y = (canvasTop + cutter.pos * ch) | 0

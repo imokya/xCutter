@@ -9,6 +9,7 @@ const tools = {
 
 const toolbar = {
   init() {
+    cutTool.init()
     this.bindEvent()
   },
   bindEvent() {
@@ -30,7 +31,5 @@ const toolbar = {
     cutTool.resize()
   }
 }
-
-toolbar.init()
 
 module.exports = toolbar

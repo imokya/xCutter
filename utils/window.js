@@ -18,6 +18,7 @@ class AppWindow extends BrowserWindow {
     this.once('ready-to-show', () => {
       this.show()
     })
+    //this.webContents.openDevTools()
   }
 }
 

@@ -11,7 +11,15 @@ let active = false
 
 const cutterTool = {
   init() {
+    this.initCutter()
     this.bindEvent()
+  },
+  initCutter() {
+    canvasEl = $('canvas')
+    canvasTop = canvasEl.offset().top
+    canvasLeft = canvasEl.offset().left + 1
+    canvasBottom = canvasEl.height() + canvasTop
+    this.createFirstCutter()
   },
   createFirstCutter() {
     cutter = this.createCutter()
@@ -56,18 +64,9 @@ const cutterTool = {
         canTouch = false
       }
     })
-    $(window).on('load', () => {
-      canvasEl = $('canvas')
-      canvasTop = canvasEl.offset().top
-      canvasLeft = canvasEl.offset().left + 1
-      canvasBottom = canvasEl.height() + canvasTop
-      this.createFirstCutter()
-    })
   },
   sortCutters() {
-    cutters.sort((a, b) => {
-      return a.pos - b.pos
-    })
+    cutters.sort((a, b) => a.pos - b.pos)
     for (let i = 1; i <= cutters.length; i++) {
       const cutter = cutters[i - 1]
       const index = i < 10 ? '0' + i : i
@@ -145,7 +144,5 @@ const cutterTool = {
     return cutter
   }
 }
-
-cutterTool.init()
 
 module.exports = cutterTool

@@ -7,7 +7,7 @@ const statusBar = require('../../components/status')
 
 let app, size, img
 
-const scales = [
+let scales = [
   1.5, 2, 3, 4, 5, 6.25, 8.33, 12.5, 16.67, 25, 33.33, 50, 66.67, 100, 200, 300, 400, 500, 600
 ]
 
@@ -27,8 +27,11 @@ const App = {
       }
       img.src = ni.toDataURL()
       size = ni.getSize()
-      scale = size.width / window.innerWidth * 100
-      scale = scale.toFixed(2) 
+      let fixWidth = document.body.clientWidth - 100
+      fixWidth = size.width > fixWidth ? fixWidth : 750
+      scale = fixWidth / size.width * 100
+      scale = (scale * 100 | 0) / 100
+      scales = scales.filter(v => v !== scale)
       scales.push(scale)
       scales.sort((a, b) => a - b)
       scaleID = scales.indexOf(scale)
@@ -41,13 +44,19 @@ const App = {
     })
     $(window).on('resize', this.resize.bind(this))
   },
+
   onLoad() {
     $('#spinner').remove()
     $('.tools').removeClass('hide')
     $('.ruler').removeClass('hide')
     $('.status-bar').removeClass('hide')
+    
     this.setupCanvas()
-    this.resize()
+
+    setTimeout(() => {
+      toolbar.init()
+      this.resize()
+    })
   },
   resize() {
     const ww = window.innerWidth
@@ -57,8 +66,8 @@ const App = {
     app.view.style.height = h + 'px'
     const dx = (w - ww) / 2 | 0
     $(window).scrollLeft(dx)
-    toolbar.resize()
     statusBar.setScale(scale)
+    toolbar.resize()
   },
   zoomIn() {
     scaleID += 1

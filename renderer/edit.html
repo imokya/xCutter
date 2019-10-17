@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>xCutter</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/iconfont.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="ruler hide"></div>
+    <div class="tools hide">
+      <div class="tools-header"></div>
+      <div class="tools-body d-flex justify-content-center">
+        <ul class="toolbar">
+          <li class="d-flex justify-content-center align-items-center"><span class="iconfont icon-cut"></span></li>
+          <li class="d-flex justify-content-center align-items-center"><span class="iconfont icon-link"></span></li>
+          <li class="d-flex justify-content-center align-items-center"><span class="iconfont icon-doc"></span></li>
+          <li class="d-flex justify-content-center align-items-center"><span class="iconfont icon-export"></span></li>
+        </ul>
+      </div>
+      <div class="tools-footer"></div>
+    </div>
+    <div class="canvas-wrap" id="canvas-wrap"></div>
+    <div id="spinner" class="d-flex justify-content-center align-items-center">
+      <div class="spinner-border text-primary">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div><!-- canvas wrap-->
+    <div class="cutter-wrap"></div><!-- cutter -->
+  </div>
+  <footer class="status-bar hide">
+    <div class="status-scale">100%</div>
+  </footer>
+  <script>
+    require('./js/edit.js')
+  </script>
+</body>
+</html>

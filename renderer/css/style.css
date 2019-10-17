@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'helvetica neue', helvetica, sans-serif;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+.hide {
+  display: none !important;
+}
+
+/* -- wrap --*/
+.wrap {
+  height: 100%;
+}
+
+.note {
+  color: #333;
+}
+
+/*-- edit style --*/
+
+.canvas-wrap * {
+  margin: 70px auto 50px auto;
+  display: block;
+}
+
+canvas {
+  border: 1px solid #0000ff;
+}
+
+#spinner {
+  height: 100%;
+}
+
+.ruler {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  height: 18px;
+  background: url(../img/ruler.png) top left repeat-x;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.tools {
+  top: 25px;
+  left: 0; 
+  position: fixed;
+  width: 60px;
+  background-color: #eee;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #cacaca;
+  z-index: 99;
+}
+
+.tools .tools-header {
+  height: 15px;
+  background-color: #ddd;
+  border-bottom: 1px solid #cacaca;
+}
+
+.tools .tools-footer {
+  height: 12px;
+  background-color: #ddd;
+  border-top: 1px solid #cacaca;
+}
+
+.tools .tools-body {
+  padding: 10px 0;
+}
+
+.tools .tools-body ul li {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.tools .tools-body ul li.active {
+  border-radius: 2px;
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+  background-color: rgba(0, 0, 0, 0.4)
+}
+
+.tools .tools-body .iconfont {
+  font-size: 20px;
+  color: #666;
+}
+
+.tools .tools-body ul li.active .iconfont {
+  color: #eee;
+}
+
+/*-- cutter style --*/
+.cutter-wrap {
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.cutter-wrap .cutter {
+  top: 0;
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  box-sizing: border-box;
+  background-clip: content-box;
+  z-index: 20;
+  cursor: pointer;
+  background-color: #4a84ff;
+}
+
+.cutter-wrap .cutter-label {
+  font-size: 12px;
+  position: absolute;
+  top: 3px;
+  height: 20px;
+  line-height: 20px;
+  width: 30px;
+  background-color: #0000ff;
+  text-align: center;
+  color: #fff;
+  font-family: 'helvetica neue', helvetica, sans-serif;
+  user-select: none;
+}
+
+/*-- footer style --*/
+footer {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  height: 22px;
+  line-height: 22px;
+  font-size: 11px;
+  background-color: #e7e7e7;
+  border-top: 1px solid #efefef;
+}
+
+footer .status-scale {
+  width: 50px;
+  text-align: center;
+  color: #888;
+  background: #cacaca;
+  border-right: 1px solid #eee;
+  user-select: none;
+}

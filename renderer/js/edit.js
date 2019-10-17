@@ -5,7 +5,7 @@ const PIXI = require('pixi.js')
 const toolbar = require('../../components/toolbar')
 const statusBar = require('../../components/status')
 
-let app, size, img
+let pixi, size, img
 
 let scales = [
   1.5, 2, 3, 4, 5, 6.25, 8.33, 12.5, 16.67, 25, 33.33, 50, 66.67, 100, 200, 300, 400, 500, 600
@@ -54,7 +54,7 @@ const App = {
     this.setupCanvas()
 
     setTimeout(() => {
-      toolbar.init()
+      toolbar.init(pixi)
       this.resize()
     })
   },
@@ -62,8 +62,8 @@ const App = {
     const ww = window.innerWidth
     const w = size.width * scale / 100 | 0
     const h = size.height * scale / 100 | 0
-    app.view.style.width = w + 'px'
-    app.view.style.height = h + 'px'
+    pixi.view.style.width = w + 'px'
+    pixi.view.style.height = h + 'px'
     const dx = (w - ww) / 2 | 0
     $(window).scrollLeft(dx)
     statusBar.setScale(scale)
@@ -83,18 +83,18 @@ const App = {
   },
   setupCanvas() {
     const el = $('#canvas-wrap')
-    app = new PIXI.Application({
+    pixi = new PIXI.Application({
       width: size.width,
       height: size.height,
       backgroundColor: 0x1099bb,
       resolution: window.devicePixelRatio || 1
     })
-    app.view.style.width = size.width + 'px'
-    app.view.style.height = size.height + 'px'
-    el[0].appendChild(app.view)
+    pixi.view.style.width = size.width + 'px'
+    pixi.view.style.height = size.height + 'px'
+    el[0].appendChild(pixi.view)
     const texture = new PIXI.Texture.from(img)
     const sprite = new PIXI.Sprite(texture)
-    app.stage.addChild(sprite)
+    pixi.stage.addChild(sprite)
   }
 }
 

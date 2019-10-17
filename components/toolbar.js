@@ -2,14 +2,17 @@ const $ = require('jquery')
 const el = $('.toolbar')
 
 const cutTool = require('../tools/cutter')
+const linkTool = require('../tools/link')
 
 const tools = {
-  "cut": cutTool
+  "cut": cutTool,
+  "link": linkTool
 }
 
 const toolbar = {
-  init() {
+  init(pixi) {
     cutTool.init()
+    linkTool.init(pixi)
     this.bindEvent()
   },
   bindEvent() {

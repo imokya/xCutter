@@ -4,6 +4,7 @@ const menu = require('./components/menu')
 
 global.data = {
   title: '',
+  imgPath: '',
   cuts: [],
   links: []
 }

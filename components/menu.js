@@ -8,13 +8,24 @@ const template = [
       { label: '打开', click:() => {
         ipcMain.emit('open')
       }},
-      { label: '导出', click:() => {
-        ipcMain.emit('export')
-      }},
       { type: 'separator' },
       { role: 'quit', label: '退出' }
     ]
   },
+
+  {
+    label: '项目',
+    submenu: [
+      { label: '导入', click:() => {
+        ipcMain.emit('import')
+      }},
+      { type: 'separator' },
+      { label: '导出', click:() => {
+        ipcMain.emit('export')
+      }},
+    ]
+  },
+
   {
     label: '关于',
     click: () => {

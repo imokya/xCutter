@@ -1,5 +1,3 @@
-const $ = require('jquery')
-
 const rulerEl = $('.ruler')
 const wraperEl = $('.cutter-wrap')
 const canvasWrap = $('#canvas-wrap')
@@ -14,6 +12,10 @@ const cutterTool = {
   init() {
     this.initCutter()
     this.bindEvent()
+  },
+
+  pushData() {
+    return cutters
   },
 
   initCutter() {

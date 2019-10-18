@@ -1,5 +1,3 @@
-const $ = require('jquery')
-
 const el = $('.status-bar')
 const scaleEl = el.find('.status-scale')
 

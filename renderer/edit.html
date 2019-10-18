@@ -16,10 +16,10 @@
       <div class="tools-header"></div>
       <div class="tools-body d-flex justify-content-center">
         <ul class="toolbar">
-          <li class="d-flex justify-content-center align-items-center" data-tool="cut"><span class="iconfont icon-cut"></span></li>
-          <li class="d-flex justify-content-center align-items-center" data-tool="link"><span class="iconfont icon-link"></span></li>
-          <li class="d-flex justify-content-center align-items-center" data-tool="doc"><span class="iconfont icon-doc"></span></li>
-          <li class="d-flex justify-content-center align-items-center" data-tool="export"><span class="iconfont icon-export"></span></li>
+          <li class="d-flex justify-content-center align-items-center" data-tool="cut" title="分割工具"><span class="iconfont icon-cut"></span></li>
+          <li class="d-flex justify-content-center align-items-center" data-tool="link" title="链接工具"><span class="iconfont icon-link"></span></li>
+          <li class="d-flex justify-content-center align-items-center" data-tool="doc" title="文档属性"><span class="iconfont icon-doc"></span></li>
+          <li class="d-flex justify-content-center align-items-center" data-tool="export" title="生成项目"><span class="iconfont icon-export"></span></li>
         </ul>
       </div>
       <div class="tools-footer"></div>
@@ -35,6 +35,7 @@
   <footer class="status-bar hide">
     <div class="status-scale">100%</div>
   </footer>
+
   <div class="modal fade" id="propDialog" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -64,12 +65,38 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">关闭</button>
-          <button type="button" class="btn btn-primary" id="apply">应用</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary apply">应用</button>
         </div>
       </div>
     </div>
-  </div>
+  </div><!-- dialog -->
+
+  <div class="modal fade" id="docDialog" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">文档属性</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">标题:</label>
+              <input type="text" class="form-control" id="title" value="">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary apply">应用</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- dialog -->
+
   <script>window.$ = window.jQuery = require('jquery')</script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script>

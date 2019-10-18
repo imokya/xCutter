@@ -23,9 +23,13 @@ const linkTool = {
     this.setActive(false)
   },
 
+  pushData() {
+    return links
+  },
+
   bindModelEvent() {
     const dialog = $('#propDialog')
-    dialog.find('#apply').on('click', e => {
+    dialog.find('.apply').on('click', e => {
       const href = $.trim(dialog.find('#link').val())
       const target = dialog.find('#target').val()
       const tracking = $.trim(dialog.find('#tracking').val())

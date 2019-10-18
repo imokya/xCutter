@@ -2,6 +2,12 @@ const { app, BrowserWindow, ipcMain, dialog, Menu } = require('electron')
 const AppWindow = require('./objects/window')
 const menu = require('./components/menu')
 
+global.data = {
+  title: '',
+  cuts: [],
+  links: []
+}
+
 const App = {
 
   init() {
@@ -34,6 +40,9 @@ const App = {
     })
     ipcMain.on('init', (event, arg) => {
       event.reply('filePath', this.filePath)
+    })
+    ipcMain.on('export', (event, arg) => {
+      this.mainWindow.webContents.send('pullData')
     })
   }
   

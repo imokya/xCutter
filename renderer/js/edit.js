@@ -98,4 +98,8 @@ const App = {
   }
 }
 
+ipcRenderer.on('pullData', (event, arg) => {
+  toolbar.pushData()
+})
+
 App.init()

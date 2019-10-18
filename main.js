@@ -1,12 +1,14 @@
 const { app, BrowserWindow, ipcMain, dialog, Menu } = require('electron')
-const AppWindow = require('./utils/window')
-const menu = require('./components/menu')   
+const AppWindow = require('./objects/window')
+const menu = require('./components/menu')
 
 const App = {
+
   init() {
     this.createMainWindow()
     this.bindEvents()
   },
+
   async openDialog() {
     const res = await dialog.showOpenDialog({
       properties: ['openFile'],
@@ -19,11 +21,13 @@ const App = {
       this.mainWindow.loadFile('./renderer/edit.html')
     }
   },
+
   createMainWindow() {
     this.mainWindow = new AppWindow({
       file: './renderer/index.html'
     })
   },
+
   bindEvents() {
     ipcMain.on('open', (event, arg) => {
       this.openDialog()
@@ -32,11 +36,11 @@ const App = {
       event.reply('filePath', this.filePath)
     })
   }
+  
 }
 
 app.on('ready', () => {
   App.init()
 })
 
-
-
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true

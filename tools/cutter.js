@@ -10,10 +10,12 @@ let canvasEl
 let active = false
 
 const cutterTool = {
+
   init() {
     this.initCutter()
     this.bindEvent()
   },
+
   initCutter() {
     canvasEl = $('canvas')
     canvasTop = canvasEl.offset().top
@@ -21,6 +23,7 @@ const cutterTool = {
     canvasBottom = canvasEl.height() + canvasTop
     this.createFirstCutter()
   },
+
   createFirstCutter() {
     cutter = this.createCutter()
     cutter.movable = false
@@ -28,6 +31,7 @@ const cutterTool = {
     cutter.labelEl.removeClass('hide')
     this.setPos(cutter, canvasTop - 2)
   },
+  
   bindEvent() {
     let canTouch = false
     $(document).on('mousedown', (e) => {
@@ -65,6 +69,7 @@ const cutterTool = {
       }
     })
   },
+  
   sortCutters() {
     cutters.sort((a, b) => a.pos - b.pos)
     for (let i = 1; i <= cutters.length; i++) {
@@ -76,11 +81,13 @@ const cutterTool = {
       cutter.setLabelText(index)
     }
   },
+
   setPos(cutter, y) {
     const pos = (y - canvasTop) / canvasEl.height()
     cutter.pos = pos.toFixed(2)
     this.setTranslate(cutter, y)
   },
+
   setActive(_active) {
     active = _active
     if (active) {
@@ -89,11 +96,13 @@ const cutterTool = {
       wraperEl.addClass('hide')
     }
   },
+
   setTranslate(cutter, y) {
     cutter.el.css({
       transform: `translateY(${y}px)`
     })
   },
+
   resize() {
     const cw = canvasEl.width()
     const ch = canvasEl.height()
@@ -110,6 +119,7 @@ const cutterTool = {
       cutter.setLabelPos(canvasLeft)
     }
   },
+
   removeCutter() {
     for (let i = 0; i < cutters.length; i++) {
       const pos = cutters.indexOf(cutter)
@@ -118,6 +128,7 @@ const cutterTool = {
     cutter.el.remove()
     cutter = null
   },
+
   createCutter() {
     const el = $('<div>').addClass('cutter')
     const labelEl = $('<div>').addClass('cutter-label hide')
@@ -143,6 +154,7 @@ const cutterTool = {
     cutters.push(cutter)
     return cutter
   }
+
 }
 
 module.exports = cutterTool

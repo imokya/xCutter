@@ -99,8 +99,3 @@ const App = {
 }
 
 App.init()
-
-
-
-
-

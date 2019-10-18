@@ -10,11 +10,13 @@ const tools = {
 }
 
 const toolbar = {
+
   init(pixi) {
     cutTool.init()
     linkTool.init(pixi)
     this.bindEvent()
   },
+
   bindEvent() {
     el.on('click', 'li', (e) => {
       el.find('li').removeClass('active')
@@ -30,9 +32,11 @@ const toolbar = {
       }
     })
   },
+
   resize() {
     cutTool.resize()
   }
+  
 }
 
 module.exports = toolbar

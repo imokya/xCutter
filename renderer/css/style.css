@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  outline: none !important;
 }
 
 html, body {
@@ -167,4 +168,21 @@ footer .status-scale {
   background: #cacaca;
   border-right: 1px solid #eee;
   user-select: none;
+}
+
+/* -- panels --*/
+.panels {
+  position: fixed;
+  bottom: 20px;
+  width: 600px;
+  height: 180px;
+  background-color: #eee;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.panels .panel-header {
+  height: 20px;
+  background-color: #ccc;
 }

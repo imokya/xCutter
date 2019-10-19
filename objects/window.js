@@ -1,5 +1,6 @@
 const { BrowserWindow } = require('electron')
 const config = require('../app.json')
+const path = require('path')
 
 class AppWindow extends BrowserWindow {
 
@@ -7,6 +8,7 @@ class AppWindow extends BrowserWindow {
     const defaultConfig = {
       width: config.width,
       height: config.height,
+      icon: path.join(__dirname, '../renderer/img/icon.ico'),
       show: false,
       webPreferences: {
         nodeIntegration: true,

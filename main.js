@@ -52,7 +52,7 @@ const App = {
       if(!fs.existsSync(this.filePath)) {
         dialog.showMessageBox({
           type: 'error',
-          message: '请确保设计稿图片在相同文件夹下'
+          message: '请确保设计稿图片在相同路径'
         })
       } else {
         this.mainWindow.loadFile('./renderer/edit.html')

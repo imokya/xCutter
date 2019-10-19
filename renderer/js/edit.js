@@ -1,4 +1,4 @@
-const { ipcRenderer, nativeImage } = require('electron')
+const { ipcRenderer, nativeImage, remote } = require('electron')
 const $ = require('jquery')
 const PIXI = require('pixi.js')
 
@@ -27,6 +27,7 @@ const App = {
       }
       img.src = ni.toDataURL()
       size = ni.getSize()
+      remote.getGlobal('data').size = size
       let fixWidth = document.body.clientWidth - 100
       fixWidth = size.width > fixWidth ? fixWidth : 750
       scale = fixWidth / size.width * 100
@@ -100,6 +101,7 @@ const App = {
 
 ipcRenderer.on('pullData', (event, arg) => {
   toolbar.pushData()
+  ipcRenderer.send('exportData')
 })
 
 App.init()

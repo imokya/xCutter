@@ -1,3 +1,5 @@
+const { remote } = require('electron')
+
 const rulerEl = $('.ruler')
 const wraperEl = $('.cutter-wrap')
 const canvasWrap = $('#canvas-wrap')
@@ -15,7 +17,9 @@ const cutterTool = {
   },
 
   pushData() {
-    return cutters
+    const data = cutters.map(val => val.pos)
+    remote.getGlobal('data').cuts = data
+    return data
   },
 
   initCutter() {

@@ -1,10 +1,13 @@
 const { app, BrowserWindow, ipcMain, dialog, Menu } = require('electron')
 const AppWindow = require('./objects/window')
 const menu = require('./components/menu')
+const path = require('path')
+const fs = require('fs')
 
 global.data = {
   title: '',
-  imgPath: '',
+  size: null,
+  path: '',
   cuts: [],
   links: []
 }
@@ -24,6 +27,7 @@ const App = {
       ]
     })
     this.filePath = res.filePaths[0]
+    global.data.path = this.filePath.replace(path.dirname(this.filePath) + path.sep, '')
     if (!res.canceled) { 
       this.mainWindow.loadFile('./renderer/edit.html')
     }
@@ -44,6 +48,17 @@ const App = {
     })
     ipcMain.on('export', (event, arg) => {
       this.mainWindow.webContents.send('pullData')
+    })
+    ipcMain.on('exportData', async (event, arg) => {
+      const res = await dialog.showSaveDialog({
+        title: '导出项目文件',
+        filters: [
+          { name: 'project', extensions: ['json'] }
+        ]
+      })
+      if (!res.canceled) { 
+        fs.writeFileSync(res.filePath, JSON.stringify(global.data))
+      }
     })
   }
   

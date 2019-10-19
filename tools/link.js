@@ -1,3 +1,4 @@
+const { remote } = require('electron')
 const PIXI = require('pixi.js')
 const Link = require('../objects/link')
 
@@ -24,7 +25,20 @@ const linkTool = {
   },
 
   pushData() {
-    return links
+    const data = links.map(link => {
+      return {
+        x: link.x | 0,
+        y: link.y | 0,
+        w: link.width | 0,
+        h: link.height | 0,
+        href: link.info.href,
+        target: link.info.target,
+        tracking: link.info.tracking
+      }
+    })
+
+    remote.getGlobal('data').links = data
+    return data
   },
 
   bindModelEvent() {

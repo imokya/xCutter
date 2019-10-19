@@ -20,6 +20,7 @@ const docTool = {
   },
 
   pushData() {
+    remote.getGlobal('data').title = title
     return title
   },
 

@@ -56,6 +56,8 @@ const App = {
 
     setTimeout(() => {
       toolbar.init(pixi)
+      const restore = remote.getGlobal('restore')
+      if(restore) toolbar.restore()
       this.resize()
     })
   },

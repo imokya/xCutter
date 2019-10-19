@@ -30,6 +30,18 @@ class Link extends PIXI.Container {
     this.setActive(false)
   }
 
+  restore(_link) {
+    this.x = _link.x
+    this.y = _link.y
+    this.w = _link.w
+    this.h = _link.h
+    this.info.href = _link.href
+    this.info.target = _link.target
+    this.info.tracking = _link.tracking
+    this.draw(_link.w, _link.h)
+    this.createUI()
+  }
+
   bindEvent() {
     let canMove, startPos, curPos, pos
     this.on('pointerdown', e => {

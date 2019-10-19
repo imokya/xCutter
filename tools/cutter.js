@@ -8,6 +8,7 @@ let cutter, cutters = []
 let canvasTop, canvasBottom, canvasLeft
 let canvasEl
 let active = false
+let data = remote.getGlobal('data')
 
 const cutterTool = {
 
@@ -16,8 +17,18 @@ const cutterTool = {
     this.bindEvent()
   },
 
+  restore() {
+    for(let i = 0; i < data.cuts.length; i++) {
+      const cutter = this.createCutter()
+      cutter.labelEl.removeClass('hide')
+      cutter.pos = data.cuts[i]
+      this.setTranslate(cutter, cutter.pos * canvasEl.height())
+    }
+    this.sortCutters()
+  },
+
   pushData() {
-    const data = cutters.map(val => val.pos)
+    const data = cutters.map(val => val.pos).slice(1)
     remote.getGlobal('data').cuts = data
     return data
   },

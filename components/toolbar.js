@@ -19,6 +19,12 @@ const toolbar = {
     this.bindEvent()
   },
 
+  restore() {
+    cutTool.restore()
+    linkTool.restore()
+    docTool.restore()
+  },
+
   pushData() {
     cutTool.pushData()
     linkTool.pushData()

@@ -1,7 +1,7 @@
 const { remote } = require('electron')
 
-let active, dialog
-let title = ''
+let active, dialog, title = ''
+const data = remote.getGlobal('data')
 
 const docTool = {
 
@@ -14,9 +14,14 @@ const docTool = {
     const apply = dialog.find('.apply')
     apply.on('click', e => {
       title = $.trim(dialog.find('#title').val())
-      remote.getGlobal('data').title = title
+      data.title = title
       dialog.modal('hide')
     })
+  },
+
+  restore() {
+    title = data.title
+    dialog.find('#title').val(title)
   },
 
   pushData() {

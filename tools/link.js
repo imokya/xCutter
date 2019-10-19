@@ -10,6 +10,8 @@ let w, h, x, y
 let del, active = false
 let links = []
 
+const data = remote.getGlobal('data')
+
 const linkTool = {
 
   init(_pixi) {
@@ -22,6 +24,14 @@ const linkTool = {
     this.bindEvent()
     this.bindModelEvent()
     this.setActive(false)
+  },
+
+  restore() {
+    for(let i = 0; i < data.links.length; i++) {
+      const link = this.createLink()
+      link.restore(data.links[i])
+      link.setActive(false)
+    }
   },
 
   pushData() {
@@ -84,6 +94,7 @@ const linkTool = {
     link.on('remove', e => {
       this.removeLink(curLink)
     })
+    return link
   },
 
   onTouchBegan(e) {

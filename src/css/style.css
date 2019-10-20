@@ -1,0 +1,74 @@
+/*-- global --*/
+
+* {
+  margin: 0;
+  padding: 0;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-touch-callout: none;
+  outline: none;
+}
+
+body, html {
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  margin: 0;
+}
+
+img {
+  display: block;
+  border: none;
+}
+
+/*-- utils --*/
+.hide {
+  display: none !important;
+}
+
+.abs {
+  position: absolute;
+}
+
+.fix {
+  position: fixed;
+}
+
+.center {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.centerX {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button {
+  display: block;
+}
+
+/*-- layout --*/
+section {
+  position: relative;
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+[placeholder]

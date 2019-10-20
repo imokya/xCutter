@@ -6,6 +6,10 @@
   "scripts": {
     "start": "nodemon --watch main.js --exec electron ."
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imokya/xcutter.git"
+  },
   "keywords": [
     "xcutter",
     "landing page",
@@ -15,10 +19,12 @@
   "license": "ISC",
   "devDependencies": {
     "bootstrap": "^4.3.1",
-    "cross-env": "^6.0.3",
     "electron": "^6.0.12",
+    "fs-extra": "^8.1.0",
     "jquery": "^3.4.1",
     "nodemon": "^1.19.3",
-    "pixi.js": "^5.1.5"
+    "pixi.js": "^5.1.5",
+    "popper.js": "^1.16.0",
+    "sharp": "^0.23.1"
   }
 }

@@ -1,13 +1,15 @@
 const el = $('.toolbar')
 
+const docTool = require('../tools/doc')
 const cutTool = require('../tools/cutter')
 const linkTool = require('../tools/link')
-const docTool = require('../tools/doc')
+const buildTool = require('../tools/build')
 
 const tools = {
   "cut": cutTool,
   "link": linkTool,
-  "doc": docTool
+  "doc": docTool,
+  "build": buildTool
 }
 
 const toolbar = {

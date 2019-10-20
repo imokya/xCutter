@@ -3,6 +3,7 @@ const AppWindow = require('./objects/window')
 const menu = require('./components/menu')
 const path = require('path')
 const fs = require('fs')
+const builder = require('./build')
 
 global.data = {
   title: '',
@@ -28,11 +29,12 @@ const App = {
         { name: 'Images', extensions: ['jpg', 'png'] }
       ]
     })
-    if (!res.canceled) { 
+    if (!res.canceled) {
       this.filePath = res.filePaths[0]
       const dirname = path.dirname(this.filePath)
       global.data.path = this.filePath.replace(dirname + path.sep, '')
       this.mainWindow.loadFile('./renderer/edit.html')
+      global.filePath = this.filePath
       global.restore = false
     }
   },
@@ -44,12 +46,12 @@ const App = {
         { name: 'project', extensions: ['json'] }
       ]
     })
-    if (!res.canceled) { 
-      const file  = res.filePaths[0]
+    if (!res.canceled) {
+      const file = res.filePaths[0]
       let data = fs.readFileSync(file, 'utf8')
       global.data = JSON.parse(data)
       this.filePath = path.join(path.dirname(file), global.data.path)
-      if(!fs.existsSync(this.filePath)) {
+      if (!fs.existsSync(this.filePath)) {
         dialog.showMessageBox({
           type: 'error',
           message: '请确保设计稿图片在相同路径'
@@ -68,7 +70,7 @@ const App = {
         { name: 'project', extensions: ['json'] }
       ]
     })
-    if (!res.canceled) { 
+    if (!res.canceled) {
       fs.writeFileSync(res.filePath, JSON.stringify(global.data))
     }
   },
@@ -77,6 +79,18 @@ const App = {
     this.mainWindow = new AppWindow({
       file: './renderer/index.html'
     })
+  },
+
+  async openBuildDialog() {
+    const res = await dialog.showOpenDialog({
+      title: '选择导出目录',
+      properties: ['openDirectory'],
+      buttonLabel: '创建项目'
+    })
+    if (!res.canceled) {
+      const des = res.filePaths[0]
+      builder.build(des)
+    }
   },
 
   bindEvents() {
@@ -92,11 +106,14 @@ const App = {
     ipcMain.on('export', (event, arg) => {
       this.mainWindow.webContents.send('pullData')
     })
+    ipcMain.on('build', (event, arg) => {
+      this.openBuildDialog()
+    })
     ipcMain.on('exportData', (event, arg) => {
       this.openExportDialog()
     })
   }
-  
+
 }
 
 app.on('ready', () => {

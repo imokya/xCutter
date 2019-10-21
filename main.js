@@ -6,6 +6,8 @@ const fs = require('fs')
 const builder = require('./build')
 
 global.data = {
+  mobile: true,
+  contentWidth: '100%',
   title: '',
   size: null,
   path: '',
@@ -107,6 +109,7 @@ const App = {
       this.mainWindow.webContents.send('pullData')
     })
     ipcMain.on('build', (event, arg) => {
+      this.mainWindow.webContents.send('getData')
       this.openBuildDialog()
     })
     ipcMain.on('exportData', (event, arg) => {

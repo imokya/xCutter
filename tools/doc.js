@@ -1,6 +1,8 @@
 const { remote } = require('electron')
 
-let active, dialog, title = ''
+let active, dialog
+let title = '', contentWidth = '100%'
+let mobile = true
 const data = remote.getGlobal('data')
 
 const docTool = {
@@ -14,18 +16,29 @@ const docTool = {
     const apply = dialog.find('.apply')
     apply.on('click', e => {
       title = $.trim(dialog.find('#title').val())
+      mobile = dialog.find('#mobile').val()
+      contentWidth = $.trim(dialog.find('#content-width').val())
       data.title = title
+      data.mobile = mobile
+      data.contentWidth = contentWidth
       dialog.modal('hide')
     })
   },
 
   restore() {
     title = data.title
+    contentWidth = data.contentWidth
+    mobile = data.mobile
     dialog.find('#title').val(title)
+    dialog.find('#content-width').val(contentWidth)
+    dialog.find('#mobile').val(mobile)
   },
 
   pushData() {
-    remote.getGlobal('data').title = title
+    const data = remote.getGlobal('data')
+    data.title = title
+    data.mobile = mobile
+    data.contentWidth = contentWidth
     return title
   },
 

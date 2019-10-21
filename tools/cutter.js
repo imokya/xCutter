@@ -101,7 +101,7 @@ const cutterTool = {
 
   setPos(cutter, y) {
     const pos = (y - canvasTop) / canvasEl.height()
-    cutter.pos = pos.toFixed(2)
+    cutter.pos = pos
     this.setTranslate(cutter, y)
   },
 

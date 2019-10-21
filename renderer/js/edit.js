@@ -106,4 +106,8 @@ ipcRenderer.on('pullData', (event, arg) => {
   ipcRenderer.send('exportData')
 })
 
+ipcRenderer.on('getData', (event, arg) => {
+  toolbar.pushData()
+})
+
 App.init()

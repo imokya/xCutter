@@ -9,7 +9,7 @@
     "dist": "electron-builder"
   },
   "build": {
-    "appId": "com.electron.xcutter",
+    "appId": "com.xingway.xcutter",
     "productName": "xCutter",
     "copyright": "copyright ©2019 xingway",
     "directories": {

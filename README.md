@@ -4,6 +4,6 @@
 ### 打包生成
 
 ```
-npm i
-npm run dist
+> npm i
+> npm run dist
 ```

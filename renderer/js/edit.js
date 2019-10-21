@@ -43,7 +43,6 @@ const App = {
       if (ctrlPressed && e.keyCode === 189) this.zoomOut()
       if (ctrlPressed && e.keyCode === 187) this.zoomIn()
     })
-    $(window).on('resize', this.resize.bind(this))
   },
 
   onLoad() {
@@ -58,6 +57,7 @@ const App = {
       toolbar.init(pixi)
       const restore = remote.getGlobal('restore')
       if(restore) toolbar.restore()
+      $(window).on('resize', this.resize.bind(this))
       this.resize()
     })
   },

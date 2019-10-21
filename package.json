@@ -15,7 +15,6 @@
     "directories": {
       "output": "dist"
     },
-    "files": ["**/*", "build/*"],
     "win": {
       "target": "nsis",
       "icon": "build/icon.ico"

@@ -46,6 +46,7 @@ const builder = {
     placeholder += `}\n\n`
 
     res = res.replace('[placeholder]', placeholder)
+
     await fs.writeFile(file, res)
     return true
   },
@@ -77,6 +78,7 @@ const builder = {
   async buildSlices() {
     const w = data.size.width
     const h = data.size.height
+    console.log('buildSlices')
     const sharpObj = sharp(global.filePath)
     let top = 0, height, output
     let cuts = data.cuts, slice

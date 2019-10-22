@@ -1,11 +1,12 @@
 # xCutter
 一个基于Electron的桌面App，只需拖拖拽拽就能快速切图并生成HTML项目
 
-### 特性
 
+### Features
+* 支持图片压缩优化
+* 支持监测代码(tracking)
 
-### 打包生成
-
+### Usage
 ```
 > npm i
 > npm run dist

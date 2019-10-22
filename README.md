@@ -1,5 +1,8 @@
 # xCutter
-一个基于Electron的桌面App，用于快速切图生成HTML项目
+一个基于Electron的桌面App，只需拖拖拽拽就能快速切图并生成HTML项目
+
+### 特性
+
 
 ### 打包生成
 

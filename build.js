@@ -2,8 +2,9 @@ const fs = require('fs-extra')
 const path = require('path')
 const sharp = require('sharp')
 const pretty = require('pretty')
+const log = require('electron-log')
 
-let des, data
+let src, des, data
 let slices = []
 
 const builder = {
@@ -11,15 +12,16 @@ const builder = {
   async build(_des) {
     des = _des
     data = global.data
-    const src = path.join(__dirname, './src')
-    await fs.copy(src, _des)
+    src = path.join(__dirname, './src')
+    await fs.ensureDir(path.join(_des, './img'))
+    await fs.ensureDir(path.join(_des, './css'))
     await this.buildSlices()
     await this.buildHtml()
     await this.buildCss()
   },
 
   async buildCss() {
-    const file = path.join(des, './css/style.css')
+    const file = path.join(src, './css/style.css')
     let res = fs.readFileSync(file, 'utf8')
     let placeholder = ''
     const w = data.size.width
@@ -46,13 +48,12 @@ const builder = {
     placeholder += `}\n\n`
 
     res = res.replace('[placeholder]', placeholder)
-
-    await fs.writeFile(file, res)
-    return true
+ 
+    await fs.writeFile(path.join(des, './css/style.css'), res)
   },
 
   async buildHtml() {
-    const file = path.join(des, './index.html')
+    const file = path.join(src, './index.html')
     let res = fs.readFileSync(file, 'utf8')
     res = res.replace('[viewport]', data.mobile ? data.size.width : 'device-width')
     res = res.replace('[title]', data.title)
@@ -71,14 +72,12 @@ const builder = {
       placeholder += `<section class="sec${index}">${content}\n</section>`
     }
     res = res.replace('[placeholder]', placeholder)
-    await fs.writeFile(file, pretty(res))
-    return true
+    await fs.outputFile(path.join(des, './index.html'), pretty(res))
   },
 
   async buildSlices() {
     const w = data.size.width
     const h = data.size.height
-    console.log('buildSlices')
     const sharpObj = sharp(global.filePath)
     let top = 0, height, output
     let cuts = data.cuts, slice
@@ -96,6 +95,7 @@ const builder = {
         height = i === cuts.length ? height : height + 2
         let name = index < 10 ? '0' + index : index
         output = path.join(des, `./img/${name}.jpg`)
+       
         await sharpObj.extract({
           top: top,
           left: 0,
@@ -104,6 +104,7 @@ const builder = {
         }).jpeg({
           quality: 80
         }).toFile(output)
+      
         slices.push({
           top,
           height
@@ -115,7 +116,6 @@ const builder = {
         height: h
       })
     }
-    return true
   }
 
 }

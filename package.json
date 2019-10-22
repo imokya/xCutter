@@ -34,12 +34,13 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^6.0.12",
-    "nodemon": "^1.19.3",
     "electron-builder": "^21.2.0",
-    "electron-rebuild": "^1.8.6"
+    "electron-rebuild": "^1.8.6",
+    "nodemon": "^1.19.3"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "electron-log": "^3.0.8",
     "fs-extra": "^8.1.0",
     "jquery": "^3.4.1",
     "pixi.js": "^5.1.5",

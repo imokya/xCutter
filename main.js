@@ -34,7 +34,7 @@ const App = {
     if (!res.canceled) {
       this.filePath = res.filePaths[0]
       const dirname = path.dirname(this.filePath)
-      global.data.path = this.filePath.replace(dirname + path.sep, '')
+      global.data.path = path.basename(this.filePath)
       this.mainWindow.loadFile('./renderer/edit.html')
       global.filePath = this.filePath
       global.restore = false

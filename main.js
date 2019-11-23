@@ -53,6 +53,7 @@ const App = {
       let data = fs.readFileSync(file, 'utf8')
       global.data = JSON.parse(data)
       this.filePath = path.join(path.dirname(file), global.data.path)
+      global.filePath = this.filePath
       if (!fs.existsSync(this.filePath)) {
         dialog.showMessageBox({
           type: 'error',

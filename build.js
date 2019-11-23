@@ -15,6 +15,7 @@ const builder = {
     src = path.join(__dirname, './src')
     await fs.ensureDir(path.join(_des, './img'))
     await fs.ensureDir(path.join(_des, './css'))
+    await fs.copy(path.join(src, './js'), path.join(_des, './js'))
     await this.buildSlices()
     await this.buildHtml()
     await this.buildCss()
@@ -65,7 +66,7 @@ const builder = {
         const link = data.links[j]
         const top = link.y - slice.top
         if (link.y > slice.top && link.y < slice.top + slice.height) {
-          content += `<a href="${link.href}" target="${link.target}" data-tracking="${link.tracking}" class="button" style="position:absolute;width:${link.w}px;height:${link.h}px;top:${top}px;"></a>\n`
+          content += `<a href="${link.href}" target="${link.target}" data-tracking="${link.tracking}" class="button" style="position:absolute;width:${link.w}px;height:${link.h}px;left:${link.x}px;top:${top}px;"></a>\n`
         }
       }
       content += `</div>`
@@ -102,7 +103,7 @@ const builder = {
           width: w,
           height: height
         }).jpeg({
-          quality: 80
+          quality: 100
         }).toFile(output)
       
         slices.push({

@@ -26,12 +26,21 @@
   <script src="js/vendors/wechat.share.js"></script>
   <script src="js/app.js"></script>
   <script>
+    var hmsr = getQueryParam('hmsr') || 'direct'
+    function getQueryParam(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+      var r = decodeURI(window.location.search.substr(1)).match(reg)
+      if (r != null) return unescape(r[2])
+      return null
+    }
     function track(tracking) {
-      _hmt && _hmt.push(['_trackEvent', tracking])
+      var btn = tracking.split('_').pop()
+      _hmt && _hmt.push(['_trackEvent', hmsr, tracking, btn])
     }
     $(document).on('click', '[data-tracking]', function(e) {
       var tracking = $(e.target).data('tracking')
       track(tracking)
+      console.log(tracking)
     })
   </script>
 </body>

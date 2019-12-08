@@ -34,7 +34,8 @@
       return null
     }
     function track(tracking) {
-      _hmt && _hmt.push(['_trackEvent', hmsr, tracking])
+      var btn = tracking.split('_').pop()
+      _hmt && _hmt.push(['_trackEvent', hmsr, tracking, btn])
     }
     $(document).on('click', '[data-tracking]', function(e) {
       var tracking = $(e.target).data('tracking')

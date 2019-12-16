@@ -70,6 +70,7 @@ section {
   background-position: left top;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-top: -1px;
 }
 
 [placeholder]

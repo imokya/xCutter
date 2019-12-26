@@ -28,7 +28,7 @@ const docTool = {
   restore() {
     title = data.title
     contentWidth = data.contentWidth
-    mobile = data.mobile
+    mobile = data.mobile.toString()
     dialog.find('#title').val(title)
     dialog.find('#content-width').val(contentWidth)
     dialog.find('#mobile').val(mobile)
@@ -37,7 +37,7 @@ const docTool = {
   pushData() {
     const data = remote.getGlobal('data')
     data.title = title
-    data.mobile = mobile === 'true' ? true : false
+    data.mobile = mobile
     data.contentWidth = contentWidth
     return title
   },

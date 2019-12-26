@@ -17,9 +17,10 @@ const docTool = {
     apply.on('click', e => {
       title = $.trim(dialog.find('#title').val())
       mobile = dialog.find('#mobile').val()
+      mobile = mobile === 'true' ? true : false
       contentWidth = $.trim(dialog.find('#content-width').val())
       data.title = title
-      data.mobile = mobile === 'true' ? true : false
+      data.mobile = mobile ? true : false
       data.contentWidth = contentWidth
       dialog.modal('hide')
     })
@@ -28,10 +29,10 @@ const docTool = {
   restore() {
     title = data.title
     contentWidth = data.contentWidth
-    mobile = data.mobile.toString()
+    mobile = data.mobile
     dialog.find('#title').val(title)
     dialog.find('#content-width').val(contentWidth)
-    dialog.find('#mobile').val(mobile)
+    dialog.find('#mobile').val(mobile.toString())
   },
 
   pushData() {

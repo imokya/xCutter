@@ -37,7 +37,7 @@ const docTool = {
   pushData() {
     const data = remote.getGlobal('data')
     data.title = title
-    data.mobile = mobile
+    data.mobile = mobile === 'true' ? true : false
     data.contentWidth = contentWidth
     return title
   },

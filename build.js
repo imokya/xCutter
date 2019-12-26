@@ -31,9 +31,10 @@ const builder = {
       const slice = data.cuts[i]
       const index = i + 1
       const name = index < 10 ? '0' + index : index
+      const sw = data.mobile === 'true' ? `${data.size.width}px`  : '100%'
       placeholder += `section.sec${index} {\n  `
       placeholder += `position: relative;\n  `
-      placeholder += `width: ${data.size.width}px;\n  `
+      placeholder += `width: ${sw};\n  `
       placeholder += `height: ${slices[i].height}px;\n  `
       placeholder += `background-image: url(../img/${name}.jpg);\n`
       placeholder += `}\n\n`
@@ -44,6 +45,7 @@ const builder = {
     placeholder += `section .content {\n  `
     placeholder += `position: relative;\n  `
     placeholder += `width: ${cw};\n  `
+    placeholder += `height: 100%;\n  `
     placeholder += `margin-left: auto;\n  `
     placeholder += `margin-right: auto;\n`
     placeholder += `}\n\n`
@@ -56,7 +58,7 @@ const builder = {
   async buildHtml() {
     const file = path.join(src, './index.html')
     let res = fs.readFileSync(file, 'utf8')
-    res = res.replace('[viewport]', data.mobile ? data.size.width : 'device-width')
+    res = res.replace('[viewport]', data.mobile === 'true' ? data.size.width : 'device-width')
     res = res.replace('[title]', data.title)
     let placeholder = ''
     for (let i = 0; i < slices.length; i++) {

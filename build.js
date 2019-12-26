@@ -108,7 +108,7 @@ const builder = {
           width: w,
           height: height
         }).jpeg({
-          quality: 100
+          quality: 95
         }).toFile(output)
       
         slices.push({

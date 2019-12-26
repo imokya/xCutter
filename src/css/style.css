@@ -73,13 +73,13 @@ section {
   margin-top: -1px;
 }
 
-section:last-child {
+/* section:last-child {
   position: fixed !important;
   bottom: 0 !important;
 }
 
 .wrap {
   padding-bottom: 88px;
-}
+} */
 
 [placeholder]

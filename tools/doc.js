@@ -19,7 +19,7 @@ const docTool = {
       mobile = dialog.find('#mobile').val()
       contentWidth = $.trim(dialog.find('#content-width').val())
       data.title = title
-      data.mobile = mobile
+      data.mobile = mobile === 'true' ? true : false
       data.contentWidth = contentWidth
       dialog.modal('hide')
     })

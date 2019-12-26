@@ -27,6 +27,8 @@ const builder = {
     let placeholder = ''
     const w = data.size.width
     const h = data.size.height
+    const cw = data.contentWidth !== '100%' ? `${data.contentWidth}px` : '100%'
+
     for (let i = 0; i <= data.cuts.length; i++) {
       const slice = data.cuts[i]
       const index = i + 1
@@ -35,12 +37,11 @@ const builder = {
       placeholder += `section.sec${index} {\n  `
       placeholder += `position: relative;\n  `
       placeholder += `width: ${sw};\n  `
+      placeholder += `min-width: ${cw};\n  `
       placeholder += `height: ${slices[i].height}px;\n  `
       placeholder += `background-image: url(../img/${name}.jpg);\n`
       placeholder += `}\n\n`
     }
-
-    const cw = data.contentWidth !== '100%' ? `${data.contentWidth}px` : '100%'
 
     placeholder += `section .content {\n  `
     placeholder += `position: relative;\n  `
@@ -60,6 +61,7 @@ const builder = {
     let res = fs.readFileSync(file, 'utf8')
     res = res.replace('[viewport]', data.mobile === 'true' ? data.size.width : 'device-width')
     res = res.replace('[title]', data.title)
+    const cx = data.contentWidth === '100%' ? 0 : (data.size.width - parseInt(data.contentWidth)) / 2
     let placeholder = ''
     for (let i = 0; i < slices.length; i++) {
       const slice = slices[i], index = i + 1
@@ -67,8 +69,9 @@ const builder = {
       for (let j = 0; j < data.links.length; j++) {
         const link = data.links[j]
         const top = link.y - slice.top
+        const left = `${link.x - cx}px`
         if (link.y > slice.top && link.y < slice.top + slice.height) {
-          content += `<a href="${link.href}" target="${link.target}" data-tracking="${link.tracking}" class="button" style="position:absolute;width:${link.w}px;height:${link.h}px;left:${link.x}px;top:${top}px;"></a>\n`
+          content += `<a href="${link.href}" target="${link.target}" data-tracking="${link.tracking}" class="button" style="position:absolute;width:${link.w}px;height:${link.h}px;left:${left};top:${top}px;"></a>\n`
         }
       }
       content += `</div>`

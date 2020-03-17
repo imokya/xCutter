@@ -16,4 +16,4 @@
 ### Demo
 [xCutter切图导出HTML项目](https://v.qq.com/x/page/j3011yw4qld.html)
 
-[![xCutter Logo](https://raw.githubusercontent.com/imokya/xcutter/master/snapshot.png)](https://github/imokya/xcutter)
+[![xCutter Logo](https://raw.githubusercontent.com/imokya/xcutter/master/snapshot.png)](https://github.com/imokya/xcutter)
